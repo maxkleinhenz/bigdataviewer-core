@@ -32,10 +32,11 @@ import net.imglib2.img.basictypeaccess.array.LongArray;
 import net.imglib2.img.basictypeaccess.volatiles.VolatileLongAccess;
 
 /**
- * A {@link LongArray} with an {@link #isValid()} flag.
+ * A {@link LongArray} with an {@link #isValid()} flag and that tracks
+ * whether it was modified or not.
  *
- * @author Stephan Saalfeld &lt;saalfelds@janelia.hhmi.org&gt;
  * @author Tobias Pietzsch &lt;tobias.pietzsch@gmail.com&gt;
+ * @author Stephan Saalfeld &lt;saalfelds@janelia.hhmi.org&gt;
  */
 public class VolatileLongArray extends AbstractVolatileArray< VolatileLongArray > implements VolatileLongAccess
 {
@@ -62,6 +63,7 @@ public class VolatileLongArray extends AbstractVolatileArray< VolatileLongArray 
 	@Override
 	public void setValue( final int index, final long value )
 	{
+		modified = true;
 		data[ index ] = value;
 	}
 

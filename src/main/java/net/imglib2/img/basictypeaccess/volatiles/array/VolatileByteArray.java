@@ -32,10 +32,11 @@ import net.imglib2.img.basictypeaccess.array.ByteArray;
 import net.imglib2.img.basictypeaccess.volatiles.VolatileByteAccess;
 
 /**
- * A {@link ByteArray} with an {@link #isValid()} flag.
+ * A {@link ByteArray} with an {@link #isValid()} flag and that tracks
+ * whether it was modified or not.
  *
- * @author Stephan Saalfeld &lt;saalfelds@janelia.hhmi.org&gt;
  * @author Tobias Pietzsch &lt;tobias.pietzsch@gmail.com&gt;
+ * @author Stephan Saalfeld &lt;saalfelds@janelia.hhmi.org&gt;
  */
 public class VolatileByteArray extends AbstractVolatileArray< VolatileByteArray > implements VolatileByteAccess
 {
@@ -64,6 +65,7 @@ public class VolatileByteArray extends AbstractVolatileArray< VolatileByteArray 
 	@Override
 	public void setValue( final int index, final byte value )
 	{
+		modified = true;
 		data[ index ] = value;
 	}
 

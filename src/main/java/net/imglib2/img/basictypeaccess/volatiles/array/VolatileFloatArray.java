@@ -32,9 +32,11 @@ import net.imglib2.img.basictypeaccess.array.FloatArray;
 import net.imglib2.img.basictypeaccess.volatiles.VolatileFloatAccess;
 
 /**
- * A {@link FloatArray} with an {@link #isValid()} flag.
+ * A {@link FloatArray} with an {@link #isValid()} flag and that tracks
+ * whether it was modified or not.
  *
  * @author Tobias Pietzsch &lt;tobias.pietzsch@gmail.com&gt;
+ * @author Stephan Saalfeld &lt;saalfelds@janelia.hhmi.org&gt;
  */
 public class VolatileFloatArray extends AbstractVolatileArray< VolatileFloatArray > implements VolatileFloatAccess
 {
@@ -63,6 +65,7 @@ public class VolatileFloatArray extends AbstractVolatileArray< VolatileFloatArra
 	@Override
 	public void setValue( final int index, final float value )
 	{
+		modified = true;
 		data[ index ] = value;
 	}
 
